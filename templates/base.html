@@ -46,10 +46,101 @@
     <title>Iroh Prox {% block extra_title %}{% endblock %}</title>
     <!--This is for the favicon-->
     <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}fav.png" />
-
 </head>
 
 <body>
+    <header>
+        <!-- Main nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+            <div class="container-fluid">
+                <!-- Nav home link -->
+                <a class="navbar-brand text-uppercase fs-2" href="#">iroh prox 5</a>
+                <!-- Mobile nav toggle button -->
+                <button class="navbar-toggler border-white" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sideNav" aria-controls="sideNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navigation links -->
+                <div class="collapse navbar-collapse justify-content-center">
+                    <ul class="navbar-nav">
+                        <!-- Home link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <!-- About us link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <!-- Services link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <!-- Prox-5 link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Prox-5</a>
+                        </li>
+                        <!-- Photogrammetry link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Photogrammetry</a>
+                        </li>
+                        <!-- Telecoms Database link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Telecoms Database</a>
+                        </li>
+                        <!-- Login link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Side nav -->
+        <div class="offcanvas offcanvas-start bg-secondary text-white" tabindex="-1" id="sideNav">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">IROH PROX 5</h5>
+                <button type="button" class="btn text-white bg-secondary fs-5" data-bs-dismiss="offcanvas">X</button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav side-nav-links">
+                    <!-- Home link -->
+                    <li>
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <!-- About us link -->
+                    <li>
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <!-- Services link -->
+                    <li>
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <!-- Prox-5 link -->
+                    <li>
+                        <a class="nav-link" href="#">Prox-5</a>
+                    </li>
+                    <!-- Photogrammetry link -->
+                    <li>
+                        <a class="nav-link" href="#">Photogrammetry</a>
+                    </li>
+                    <!-- Telecoms Database link -->
+                    <li>
+                        <a class="nav-link" href="#">Telecoms Database</a>
+                    </li>
+                    <!-- Login link -->
+                    <li>
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </header>
+
+
+    {% if messages %}
+    <div class="message-container"></div>
+    {% endif %}
 
     {% block page_header %}
     {% endblock %}

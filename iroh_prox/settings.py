@@ -46,7 +46,7 @@ if 'HEROKU_HOSTNAME' in os.environ:
 else:
     # Development
     ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                     'https://8000-amaranth-beetle-c1e5zg7c.ws-eu18.gitpod.io/']
+                     'https://8000-amaranth-beetle-c1e5zg7c.ws-eu18.gitpod.io/', '5501-amaranth-beetle-c1e5zg7c.ws-eu18.gitpod.io']
 
 
 # Application definition
