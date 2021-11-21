@@ -31,3 +31,8 @@ def photogrammetry(request):
 def telecomsdatabase(request):
     """ A View to return the index page """
     return render(request, 'home/telecomsdatabase.html')
+
+
+def search(request):
+    """ A View to return the search page """
+    return render(request, 'home/search.html')

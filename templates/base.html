@@ -64,13 +64,17 @@
                         <li class="nav-item pe-3">
                             <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
+                        <!-- Search link -->
+                        <li class="nav-item pe-3">
+                            <a class="nav-link" href="{% url 'search' %}">Search</a>
+                        </li>
                         <!-- About us link -->
                         <li class="nav-item pe-3">
                             <a class="nav-link" href="{% url 'about' %}">About Us</a>
                         </li>
                         <!-- Service dropdown -->
                         <li class="nav-item dropdown pe-3" onclick="changeServIcon()">
-                            <a class="nav-link" href="#" id="navbarDropdown1" role="button"
+                            <a class="nav-link" href="#" id="navbarServDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Services <i class="fas fa-angle-down" id="dropdownServIcon"></i>
                             </a>
@@ -85,7 +89,7 @@
                         </li>
                         <!-- Account dropdown -->
                         <li class="nav-item dropdown pe-3" onclick="changeAccIcon()">
-                            <a class="nav-link" href="#" id="navbarDropdown2" role="button"
+                            <a class="nav-link" href="#" id="navbarAccDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Account <i class="fas fa-angle-down" id="dropdownAccIcon"></i>
                             </a>
@@ -134,6 +138,8 @@
                 <ul class="navbar-nav side-nav-links">
                     <!-- Home link -->
                     <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <!-- Search link -->
+                    <li><a class="nav-link" href="{% url 'search' %}">Search</a></li>
                     <!-- About us link -->
                     <li><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                     <!-- Service dropdown -->
