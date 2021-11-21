@@ -37,6 +37,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/993516308f.js" crossorigin="anonymous"></script>
     {% endblock %}
 
     <!-- Additional js placeholder -->
@@ -50,51 +52,49 @@
 
 <body>
     <header>
-        <!-- Main nav bar -->
+        <!-- Top navigation bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
             <div class="container-fluid">
                 <!-- Nav home link -->
-                <a class="navbar-brand text-uppercase fs-2" href="#">iroh prox 5</a>
-                <!-- Mobile nav toggle button -->
-                <button class="navbar-toggler border-white" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#sideNav" aria-controls="sideNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="navbar-brand text-uppercase fs-2" href="{% url 'home' %}">iroh prox 5</a>
                 <!-- Navigation links -->
                 <div class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
                         <!-- Home link -->
-                        <li class="nav-item">
+                        <li class="nav-item pe-3">
                             <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <!-- About us link -->
-                        <li class="nav-item">
+                        <li class="nav-item pe-3">
                             <a class="nav-link" href="{% url 'about' %}">About Us</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <!-- Service dropdown -->
+                        <li class="nav-item dropdown pe-3" onclick="changeServIcon()">
+                            <a class="nav-link" href="#" id="navbarDropdown1" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Services
+                                Services <i class="fas fa-angle-down" id="dropdownServIcon"></i>
                             </a>
-                            <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                            <!-- Service dropdown menu -->
+                            <ul class="dropdown-menu bg-secondary rounded-0">
                                 <li><a class="dropdown-item" href="{% url 'services' %}">Services</a></li>
                                 <li><a class="dropdown-item" href="{% url 'prox5' %}">Prox-5</a></li>
-                                <li><a class="dropdown-item" href="{% url 'photogrammetry' %}">Photogrammetry<a></li>
+                                <li><a class="dropdown-item" href="{% url 'photogrammetry' %}">Photogrammetry</a></li>
                                 <li><a class="dropdown-item" href="{% url 'telecomsdatabase' %}">Telecoms Database</a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- Login link -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <!-- Account dropdown -->
+                        <li class="nav-item dropdown pe-3" onclick="changeAccIcon()">
+                            <a class="nav-link" href="#" id="navbarDropdown2" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Account
+                                Account <i class="fas fa-angle-down" id="dropdownAccIcon"></i>
                             </a>
-                            <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                                <!-- If the user has an account and is classified as a super user display the following -->
+                            <!-- Account dropdown menu -->
+                            <ul class="dropdown-menu bg-secondary rounded-0">
+                                <!-- If the user has an account display the following -->
                                 {% if request.user.is_authenticated %}
                                 <li><a class="dropdown-item" href="">My Profile</a></li>
+                                <!-- If the user is a super user display the following -->
                                 {% if request.user.is_superuser %}
                                 <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Home</a></li>
                                 <li><a class="dropdown-item" href="">Add User</a></li>
@@ -106,54 +106,81 @@
                                 <li><a class="dropdown-item" href="">Search by Project</a></li>
                                 <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                 {% else %}
+                                <!-- If the user is not registered -->
                                 <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
                                 <li><a class="dropdown-item" href="">Contact Us</a></li>
                                 {% endif %}
+                            </ul>
                         </li>
                     </ul>
-                    </li>
-                    </ul>
                 </div>
+                <!-- Side navigation toggle button -->
+                <button class="btn btn-outline-light rounded-0 d-lg-none" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sideNav" aria-controls="sideNav">
+                    <i class="fas fa-bars fs-2 py-1"></i>
+                </button>
             </div>
         </nav>
-        <!-- Side nav -->
-        <div class="offcanvas offcanvas-start bg-secondary text-white" tabindex="-1" id="sideNav">
+        <!-- Side navigation bar -->
+        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sideNav">
+            <!-- Side nav header -->
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">IROH PROX 5</h5>
-                <button type="button" class="btn text-white bg-secondary fs-5" data-bs-dismiss="offcanvas">X</button>
+                <h5 class="offcanvas-title text-uppercase fs-2" id="offcanvasExampleLabel">iroh prox 5</h5>
+                <!-- Side nav close button -->
+                <button type="button" class="btn btn-outline-light rounded-0 text-white bg-dark fs-5 fw-bold" data-bs-dismiss="offcanvas">X</button>
             </div>
+            <!-- Side nav body -->
             <div class="offcanvas-body">
                 <ul class="navbar-nav side-nav-links">
                     <!-- Home link -->
-                    <li>
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
+                    <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                     <!-- About us link -->
-                    <li>
-                        <a class="nav-link" href="#">About Us</a>
+                    <li><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                    <!-- Service dropdown -->
+                    <li class="navbar nav-item dropdown py-0 pe-3" onclick="changeSideServIcon()">
+                        <a class="nav-link" href="#" id="navbarDropdownSer" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Services <i class="fas fa-angle-down" id="dropdownSideServIcon"></i>
+                        </a>
+                        <!-- Service dropdown menu -->
+                        <ul class="dropdown-menu bg-secondary rounded-0">
+                            <li><a class="dropdown-item" href="{% url 'services' %}">Services</a></li>
+                            <li><a class="dropdown-item" href="{% url 'prox5' %}">Prox-5</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'photogrammetry' %}">Photogrammetry</a></li>
+                            <li><a class="dropdown-item" href="{% url 'telecomsdatabase' %}">Telecoms Database</a>
+                            </li>
+                        </ul>
                     </li>
-                    <!-- Services link -->
-                    <li>
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <!-- Prox-5 link -->
-                    <li>
-                        <a class="nav-link" href="#">Prox-5</a>
-                    </li>
-                    <!-- Photogrammetry link -->
-                    <li>
-                        <a class="nav-link" href="#">Photogrammetry</a>
-                    </li>
-                    <!-- Telecoms Database link -->
-                    <li>
-                        <a class="nav-link" href="#">Telecoms Database</a>
-                    </li>
-                    <!-- Login link -->
-                    <li>
-                        <a class="nav-link" href="#">Login</a>
+                    <!-- Account dropdown -->
+                    <li class="navbar nav-item dropdown py-0 pe-3" onclick="changeSideAccIcon()">
+                        <a class="nav-link" href="#" id="navbarDropdownAcc" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Account <i class="fas fa-angle-down" id="dropdownSideAccIcon"></i>
+                        </a>
+                        <!-- Account dropdown menu -->
+                        <ul class="dropdown-menu bg-secondary rounded-0">
+                            <!-- If the user has an account and is classified as a super user display the following -->
+                            {% if request.user.is_authenticated %}
+                            <li><a class="dropdown-item" href="">My Profile</a></li>
+                            {% if request.user.is_superuser %}
+                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin
+                                    Home</a></li>
+                            <li><a class="dropdown-item" href="">Add User</a></li>
+                            <li><a class="dropdown-item" href="">Add Client</a></li>
+                            <li><a class="dropdown-item" href="">Add Site</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="">Search</a></li>
+                            <li><a class="dropdown-item" href="">Search by Site</a></li>
+                            <li><a class="dropdown-item" href="">Search by Project</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                            <li><a class="dropdown-item" href="">Contact Us</a></li>
+                            {% endif %}
+                        </ul>
                     </li>
                 </ul>
-
             </div>
         </div>
     </header>
@@ -172,6 +199,27 @@
 </body>
 
 {% block postloadjs %}
+    <script type="text/javascript">
+        function changeServIcon() {
+            let icon = document.getElementById("dropdownServIcon")
+            icon.classList.toggle("fa-angle-up");
+        }
+
+        function changeAccIcon() {
+        let icon = document.getElementById("dropdownAccIcon")
+        icon.classList.toggle("fa-angle-up");
+        }
+
+        function changeSideServIcon() {
+        let icon = document.getElementById("dropdownSideServIcon")
+        icon.classList.toggle("fa-angle-up");
+        }
+
+        function changeSideAccIcon() {
+        let icon = document.getElementById("dropdownSideAccIcon")
+        icon.classList.toggle("fa-angle-up");
+        }
+    </script>
 {% endblock %}
 
 </html>

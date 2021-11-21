@@ -14,6 +14,10 @@
 }
 
 /* Side nav bar */
+.offcanvas {
+    width: 275px;
+}
+
 .side-nav-links li > a {
-   color: #ffffff;
+    color: #ffffff;
 }
