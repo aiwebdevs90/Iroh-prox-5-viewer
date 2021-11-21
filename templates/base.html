@@ -61,36 +61,57 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Navigation links -->
-                <div class="collapse navbar-collapse justify-content-center">
+                <div class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
                         <!-- Home link -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <!-- About us link -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="{% url 'about' %}">About Us</a>
                         </li>
-                        <!-- Services link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <!-- Prox-5 link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Prox-5</a>
-                        </li>
-                        <!-- Photogrammetry link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Photogrammetry</a>
-                        </li>
-                        <!-- Telecoms Database link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Telecoms Database</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Services
+                            </a>
+                            <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'services' %}">Services</a></li>
+                                <li><a class="dropdown-item" href="{% url 'prox5' %}">Prox-5</a></li>
+                                <li><a class="dropdown-item" href="{% url 'photogrammetry' %}">Photogrammetry<a></li>
+                                <li><a class="dropdown-item" href="{% url 'telecomsdatabase' %}">Telecoms Database</a>
+                                </li>
+                            </ul>
                         </li>
                         <!-- Login link -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                <!-- If the user has an account and is classified as a super user display the following -->
+                                {% if request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="">My Profile</a></li>
+                                {% if request.user.is_superuser %}
+                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Home</a></li>
+                                <li><a class="dropdown-item" href="">Add User</a></li>
+                                <li><a class="dropdown-item" href="">Add Client</a></li>
+                                <li><a class="dropdown-item" href="">Add Site</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="">Search</a></li>
+                                <li><a class="dropdown-item" href="">Search by Site</a></li>
+                                <li><a class="dropdown-item" href="">Search by Project</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                <li><a class="dropdown-item" href="">Contact Us</a></li>
+                                {% endif %}
                         </li>
+                    </ul>
+                    </li>
                     </ul>
                 </div>
             </div>
